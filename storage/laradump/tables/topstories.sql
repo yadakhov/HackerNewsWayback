@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS `topstories`;
 CREATE TABLE `topstories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `topstories` text COLLATE utf8_unicode_ci NOT NULL,
+  `done` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)

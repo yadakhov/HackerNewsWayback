@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40accaab4065f281edf402ba76867d38",
-    "content-hash": "2e21249a71c6cdadc22d723b9c2c321a",
+    "hash": "54b23aed599d1ae38e744ec2c19fcea0",
+    "content-hash": "f161088aa08b76f36486b80e340c3451",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1866,6 +1866,99 @@
                 "environment"
             ],
             "time": "2016-09-01 10:05:43"
+        },
+        {
+            "name": "yadakhov/curl",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yadakhov/curl.git",
+                "reference": "32d420321cde94cf81f53e9315478cf60d2760cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yadakhov/curl/zipball/32d420321cde94cf81f53e9315478cf60d2760cd",
+                "reference": "32d420321cde94cf81f53e9315478cf60d2760cd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yadakhov\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yada Khov",
+                    "email": "yada.khov@gmail.com"
+                }
+            ],
+            "description": "A simple php curl wrapper class.",
+            "homepage": "https://github.com/yadakhov/curl",
+            "keywords": [
+                "api",
+                "curl"
+            ],
+            "time": "2016-08-06 14:42:16"
+        },
+        {
+            "name": "yadakhov/insert-on-duplicate-key",
+            "version": "v0.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yadakhov/insert-on-duplicate-key.git",
+                "reference": "c465e5c17b972dc17caa170caafac6c8701e4cf5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yadakhov/insert-on-duplicate-key/zipball/c465e5c17b972dc17caa170caafac6c8701e4cf5",
+                "reference": "c465e5c17b972dc17caa170caafac6c8701e4cf5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^5.1",
+                "illuminate/support": "^5.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/dbunit": "^2.0",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yadakhov\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yada Khov",
+                    "email": "yada.khov@gmail.com",
+                    "homepage": "http://yadakhov.com"
+                }
+            ],
+            "description": "A trait for MySQL INSERT ON DUPLICATE KEY UDPATE.",
+            "homepage": "https://github.com/yadakhov/insert-on-duplicate-key",
+            "keywords": [
+                "database",
+                "eloquent",
+                "mysql"
+            ],
+            "time": "2016-08-28 19:10:51"
         },
         {
             "name": "yadakhov/laradump",

@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        \App\Console\Commands\GetItems::class,
         \App\Console\Commands\TopStories::class,
     ];
 
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('hn:topstories')->everyMinute();
+        $schedule->command('hn:getitems')->everyThirtyMinutes();
     }
 
     /**

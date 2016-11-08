@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Item;
+use App\Models\NewStory;
 use App\Models\TopStory;
 use Illuminate\Console\Command;
 use Yadakhov\Curl;
@@ -33,19 +34,16 @@ class GetItems extends Command
 
     public function handle()
     {
-        $tops = TopStory::where('done', false)->get();
+        $news = collect(NewStory::where('done', false)->get());
+        $tops = collect(TopStory::where('done', false)->get());
+        $all = $news->merge($tops);
 
-        if ($tops->isEmpty()) {
-            $this->info('Nothing to do.');
-            exit;
-        }
-
-        $count = 0;
-        foreach ($tops as $top) {
-            $stories = $top->items;
+        foreach ($all as $story) {
+            $stories = $story->items;
 
             $items = json_decode($stories, true);
 
+            $count = 0;
             foreach ($items as $id) {
                 $data = $this->getItem($id);
 
@@ -55,8 +53,8 @@ class GetItems extends Command
                 }
             }
 
-            $top->done = true;
-            $top->save();
+            $story->done = true;
+            $story->save();
             $this->info('Done parsing all stories.');
         }
     }

@@ -9,26 +9,15 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-DROP TABLE IF EXISTS `items`;
+DROP TABLE IF EXISTS `newstories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `items` (
-  `id` int(10) unsigned NOT NULL,
-  `type` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `by` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `time` int(10) unsigned DEFAULT NULL,
-  `title` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `url` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `text` longtext COLLATE utf8_unicode_ci,
-  `score` int(11) DEFAULT NULL,
-  `descendants` int(11) DEFAULT NULL,
-  `parent` int(11) DEFAULT NULL,
-  `kids` text COLLATE utf8_unicode_ci,
-  `parts` text COLLATE utf8_unicode_ci,
-  `deleted` tinyint(4) DEFAULT NULL,
-  `dead` tinyint(4) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+CREATE TABLE `newstories` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `items` text COLLATE utf8_unicode_ci NOT NULL,
+  `done` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

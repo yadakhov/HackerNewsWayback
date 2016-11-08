@@ -40,6 +40,7 @@ class GetItems extends Command
             exit;
         }
 
+        $count = 0;
         foreach ($tops as $top) {
             $stories = $top->topstories;
 
@@ -47,8 +48,11 @@ class GetItems extends Command
 
             foreach ($items as $id) {
                 $data = $this->getItem($id);
-                Item::insertOnDuplicateKey($data);
-                $this->info('Done with ' . array_get($data, 'title'));
+
+                if (isset($data['id'])) {
+                    Item::insertOnDuplicateKey($data);
+                    $this->info($count++ . ': Done with ' . array_get($data, 'title'));
+                }
             }
 
             $top->done = true;

@@ -42,7 +42,7 @@ class GetItems extends Command
 
         $count = 0;
         foreach ($tops as $top) {
-            $stories = $top->topstories;
+            $stories = $top->items;
 
             $items = json_decode($stories, true);
 

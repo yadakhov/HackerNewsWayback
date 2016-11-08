@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\GetItems::class,
+        \App\Console\Commands\NewStories::class,
         \App\Console\Commands\TopStories::class,
     ];
 

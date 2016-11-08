@@ -2,25 +2,25 @@
 
 namespace App\Console\Commands;
 
-use App\Models\TopStory;
+use App\Models\NewStory;
 use Illuminate\Console\Command;
 use Yadakhov\Curl;
 
-class TopStories extends Command
+class NewStories extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'hn:topstories';
+    protected $signature = 'hn:newstories';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Take a snapshot of all the top stories.';
+    protected $description = 'Take a snapshot of all the new stories.';
 
     /**
      * TopStories constructor.
@@ -35,15 +35,15 @@ class TopStories extends Command
         // Check if last hours exists
         $lastHour = date('Y-m-d H:00:00', strtotime('now'));
 
-        if (TopStory::where('created_at', $lastHour)->exists()) {
+        if (NewStory::where('created_at', $lastHour)->exists()) {
             $this->info('Last hour snapshot already exists.');
             exit;
         }
 
-        $url = 'https://hacker-news.firebaseio.com/v0/topstories.json';
+        $url = 'https://hacker-news.firebaseio.com/v0/newstories.json';
         $data = Curl::getInstance()->get($url);
 
-        $row = new TopStory();
+        $row = new NewStory();
         $row->items = $data;
         $row->done = false;
         $row->created_at = $lastHour;

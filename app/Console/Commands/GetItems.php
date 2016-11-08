@@ -51,7 +51,7 @@ class GetItems extends Command
 
                 if (isset($data['id'])) {
                     Item::insertOnDuplicateKey($data);
-                    $this->info($count++ . ': Done with ' . array_get($data, 'title'));
+                    $this->info(++$count . ': Done with ' . array_get($data, 'title'));
                 }
             }
 

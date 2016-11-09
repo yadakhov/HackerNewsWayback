@@ -17,6 +17,11 @@
         </span>
     </div>
 
+    <div>
+        <a href="{{ route('front', ['at' => $previousDay]) }}">Previous Day</a> |
+        <a href="{{ route('front', ['at' => $previousHour]) }}">Previous Hour</a>
+    </div>
+
     <div class="news-view view v-transition">
 
         @foreach($items as $item)

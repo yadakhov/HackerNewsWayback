@@ -18,7 +18,7 @@ class PageController extends Controller
         $at = $request->input('at');
 
         if (!empty($at)) {
-            $at = Carbon::createFromFormat('Y-m-d H i', $at);
+            $at = Carbon::createFromFormat('Y-m-d H', $at);
             $topStory = TopStory::where('created_at', '=', $at->toDateTimeString())->first();
         }
 
@@ -32,8 +32,8 @@ class PageController extends Controller
         $items = Item::whereIn('id', $itemIds)->get();
 
         $createdAt = $topStory->created_at;
-        $previousHour = $createdAt->subHour(1)->format('Y-m-d H i');
-        $previousDay = $createdAt->subDay(1)->format('Y-m-d H i');
+        $previousHour = $createdAt->subHour(1)->format('Y-m-d H');
+        $previousDay = $createdAt->subDay(1)->format('Y-m-d H');
 
         $data = [
             'topStory' => $topStory,

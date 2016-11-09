@@ -6,7 +6,6 @@ use App\Models\TopStory;
 use App\Models\Item;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\Paginator;
 
 class PageController extends Controller
 {
@@ -29,7 +28,7 @@ class PageController extends Controller
         $itemIds = $topStory->items;
         $itemIds = json_decode($itemIds, true);
 
-        $items = Item::whereIn('id', $itemIds)->get();
+        $items = Item::whereIn('id', $itemIds)->orderByRaw($this->getOrderByField($itemIds))->get();
 
         $createdAt = $topStory->created_at;
         $previousHour = $createdAt->subHour(1)->format('Y-m-d H');
@@ -44,6 +43,17 @@ class PageController extends Controller
         ];
 
         return view('page.front', $data);
+    }
+
+    /**
+     * Build order by FIELD(id, "1", "2", "3")
+     *
+     * @param $ids
+     * @return string
+     */
+    protected function getOrderByField($ids)
+    {    //
+        return  'FIELD(id, "' . implode('", "', $ids) . '")';
     }
 
     /**

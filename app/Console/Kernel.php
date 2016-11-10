@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        \App\Console\Commands\AllItems::class,
         \App\Console\Commands\GetItems::class,
         \App\Console\Commands\NewStories::class,
         \App\Console\Commands\TopStories::class,

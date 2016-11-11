@@ -38,10 +38,9 @@ class AllItems extends Command
 
         while ($startId <= $endId) {
             DB::beginTransaction();
-            $startId = AllItem::orderBy('id', 'desc')->first();
-            $startId++;
+            $last = AllItem::orderBy('id', 'desc')->first();
             $row = new AllItem();
-            $row->id = $startId;
+            $row->id = $last->id + 1;
             $row->save();
             DB::commit();
 

@@ -77,13 +77,19 @@ class AllItems extends Command
 
         // For deleted items we just return the delete flag.
         if (!empty($json['deleted'])) {
-            return [
+            $data = [
                 'id' => array_get($json, 'id'),
                 'deleted' => array_get($json, 'deleted'),
                 'parent' => array_get($json, 'parent'),
                 'time' => array_get($json, 'time'),
                 'type' => array_get($json, 'type'),
             ];
+
+            if (!empty($data['time'])) {
+                $data['time'] = date('Y-m-d H:i:s', $data['time']);
+            }
+
+            return $data;
         }
 
         $data = [

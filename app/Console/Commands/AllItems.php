@@ -80,6 +80,9 @@ class AllItems extends Command
             return [
                 'id' => array_get($json, 'id'),
                 'deleted' => array_get($json, 'deleted'),
+                'parent' => array_get($json, 'parent'),
+                'time' => array_get($json, 'time'),
+                'type' => array_get($json, 'type'),
             ];
         }
 

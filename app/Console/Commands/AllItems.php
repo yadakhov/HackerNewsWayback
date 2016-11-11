@@ -37,13 +37,17 @@ class AllItems extends Command
         $startId = 1;
 
         while ($startId <= $endId) {
-            DB::beginTransaction();
-            $last = AllItem::orderBy('id', 'desc')->first();
-            $nextId = $last->id + 1;
-            $row = new AllItem();
-            $row->id = $nextId;
-            $row->save();
-            DB::commit();
+            try {
+                DB::beginTransaction();
+                $last = AllItem::orderBy('id', 'desc')->first();
+                $nextId = $last->id + 1;
+                $row = new AllItem();
+                $row->id = $nextId;
+                $row->save();
+                DB::commit();
+            } catch (\Exception $e) {
+                continue;
+            }
 
             DB::beginTransaction();
             $data = $this->getItem($nextId);

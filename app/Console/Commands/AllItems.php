@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use DB;
 use App\Models\AllItem;
 use Illuminate\Console\Command;
 use Yadakhov\Curl;
@@ -32,23 +33,26 @@ class AllItems extends Command
 
     public function handle()
     {
-        $startId = AllItem::orderBy('id', 'desc')->first();
-
-        if (empty($startId)) {
-            $startId = 1;
-        } else {
-            $startId = $startId->id;
-        }
-
         $endId = Curl::getInstance()->get('https://hacker-news.firebaseio.com/v0/maxitem.json');
+        $startId = 1;
 
-        for ($i = $startId; $i <= $endId; $i++) {
-            $data = $this->getItem($i);
+        while ($startId <= $endId) {
+            DB::beginTransaction();
+            $startId = AllItem::orderBy('id', 'desc')->first();
+            $startId++;
+            $row = new AllItem();
+            $row->id = $startId;
+            $row->save();
+            DB::commit();
+
+            DB::beginTransaction();
+            $data = $this->getItem($startId);
 
             if (isset($data['id'])) {
                 AllItem::insertOnDuplicateKey($data);
-                $this->info($i . ': done with ' . array_get($data, 'title') . ' of ' . $endId);
+                $this->info($startId . ': done with ' . array_get($data, 'title') . ' of ' . $endId);
             }
+            DB::commit();
         }
     }
 

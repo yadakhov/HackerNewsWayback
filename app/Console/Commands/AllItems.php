@@ -46,6 +46,7 @@ class AllItems extends Command
                 $row->save();
                 DB::commit();
             } catch (\Exception $e) {
+                DB::rollback();
                 continue;
             }
 

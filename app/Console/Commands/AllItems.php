@@ -39,17 +39,18 @@ class AllItems extends Command
         while ($startId <= $endId) {
             DB::beginTransaction();
             $last = AllItem::orderBy('id', 'desc')->first();
+            $nextId = $last->id + 1;
             $row = new AllItem();
-            $row->id = $last->id + 1;
+            $row->id = $nextId;
             $row->save();
             DB::commit();
 
             DB::beginTransaction();
-            $data = $this->getItem($startId);
+            $data = $this->getItem($nextId);
 
             if (isset($data['id'])) {
                 AllItem::insertOnDuplicateKey($data);
-                $this->info($startId . ': done with ' . array_get($data, 'title') . ' of ' . $endId);
+                $this->info($nextId . ': done with ' . array_get($data, 'title') . ' of ' . $endId);
             }
             DB::commit();
         }

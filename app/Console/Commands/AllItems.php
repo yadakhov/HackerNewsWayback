@@ -54,8 +54,14 @@ class AllItems extends Command
             $data = $this->getItem($nextId);
 
             if (isset($data['id'])) {
-                AllItem::insertOnDuplicateKey($data);
-                $this->info($nextId . ': done with ' . array_get($data, 'title') . ' of ' . $endId);
+                try {
+                    AllItem::insertOnDuplicateKey($data);
+                    $this->info($nextId . ': done with ' . array_get($data, 'title') . ' of ' . $endId);
+                } catch (\Exception $e) {
+                    DB::rollack();
+                    $this->info('Error: ' . $e->getMessage());
+                    continue;
+                }
             }
             DB::commit();
         }

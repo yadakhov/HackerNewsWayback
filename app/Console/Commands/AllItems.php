@@ -58,7 +58,7 @@ class AllItems extends Command
                     AllItem::insertOnDuplicateKey($data);
                     $this->info($nextId . ': done with ' . array_get($data, 'title') . ' of ' . $endId);
                 } catch (\Exception $e) {
-                    DB::rollack();
+                    DB::rollback();
                     $this->info('Error: ' . $e->getMessage());
                     continue;
                 }

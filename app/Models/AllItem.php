@@ -6,7 +6,7 @@ class AllItem extends BaseModel
 {
     protected $table = 'allitems';
 
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $guarded = [];
 }

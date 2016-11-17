@@ -14,24 +14,24 @@ DROP TABLE IF EXISTS `allitems`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `allitems` (
   `id` int(10) unsigned NOT NULL,
-  `type` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `by` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `time` int(10) unsigned DEFAULT NULL,
-  `title` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `url` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `text` longtext COLLATE utf8_unicode_ci,
+  `type` enum('story','comment','job','poll','pollopt') DEFAULT NULL,
+  `by` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  `title` varchar(1024) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `url` varchar(2048) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `text` longtext,
   `score` int(11) DEFAULT NULL,
   `descendants` int(11) DEFAULT NULL,
   `parent` int(11) DEFAULT NULL,
-  `kids` text COLLATE utf8_unicode_ci,
-  `parts` text COLLATE utf8_unicode_ci,
+  `kids` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `parts` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `deleted` tinyint(4) DEFAULT NULL,
   `dead` tinyint(4) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `by` (`by`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `by` (`by`),
+  KEY `time` (`time`),
+  KEY `parent` (`parent`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

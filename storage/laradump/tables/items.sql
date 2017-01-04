@@ -18,7 +18,7 @@ CREATE TABLE `items` (
   `by` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `time` int(10) unsigned DEFAULT NULL,
   `title` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `url` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `url` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `text` longtext COLLATE utf8_unicode_ci,
   `score` int(11) DEFAULT NULL,
   `descendants` int(11) DEFAULT NULL,

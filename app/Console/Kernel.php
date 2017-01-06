@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('hn:newstories')->everyFiveMinutes();
-        $schedule->command('hn:topstories')->everyFiveMinutes();
+        $schedule->command('hn:newstories')->everyHour();
+        $schedule->command('hn:topstories')->everyHour();
         $schedule->command('hn:getitems')->everyTenMinutes();
     }
 

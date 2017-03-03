@@ -34,8 +34,8 @@ class GetItems extends Command
 
     public function handle()
     {
-        $news = collect(NewStory::where('done', false)->get());
-        $tops = collect(TopStory::where('done', false)->get());
+        $news = collect(NewStory::where('done', false)->orderBy('id', 'desc')->get());
+        $tops = collect(TopStory::where('done', false)->orderBy('id', 'desc')->get());
         $all = $news->merge($tops);
 
         foreach ($all as $story) {
